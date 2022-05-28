@@ -102,14 +102,15 @@ You do not need to round the satisfaction value.
 ### Interface: Data Types
 | If the variable name | It is of type |
 | --- | --- |
-| is exactly **fastFoodArray** | `Array` of objects, where each `object` contains the keys `{customerService, foodVariety, valueForMoney, timeToMake, taste}` |
+| is exactly **fastFoodArray** | `Array` of objects, where each `object` contains the keys `{name, customerService, foodVariety, valueForMoney, timeToMake, taste}` |
 | is exactly **name** | `string` |
 | is exactly **customerService** | `number` |
 | is exactly **foodVariety** | `number` |
 | is exactly **valueForMoney** | `number` |
 | is exactly **timeToMake** | `number` |
 | is exactly **taste** | `number` |
-| is exactly **satisfactionArray** | `Array` of objects, where each `object` contains the keys `{name, satisfaction}` |
+| is exactly **restaurantName** | `string` |
+| is exactly **satisfactionArray** | `Array` of objects, where each `object` contains the keys `{restaurantName, satisfaction}` |
 | is exactly **satisfaction** | `number` |
 
 
