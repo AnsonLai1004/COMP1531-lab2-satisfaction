@@ -32,24 +32,31 @@
  * @returns array with the same items, sorted by the key-order given.
  */
 function sortedFastFood(fastFoodArray) {
-  return [
-    {
-      name: 'kentucky',
-      customerService: 4,
-      foodVariety: 3,
-      valueForMoney: 4,
-      timeToMake: 4,
-      taste: 3
-    },
-    {
-      name: 'maccas',
-      customerService: 3,
-      foodVariety: 3,
-      valueForMoney: 3,
-      timeToMake: 4,
-      taste: 3
-    },
-  ];
+  let clone = [...fastFoodArray];
+  clone.sort(
+    function(a,b) {
+      if (a.customerService === b.customerService) {
+        if (a.foodVariety === b.foodVariety) {
+          if (a.valueForMoney === b.valueForMoney) {
+            if (a.timeToMake === b.timeToMake) {
+              if (a.taste === b.taste) {
+                const nameA = a.name.toUpperCase();
+                const nameB = b.name.toUpperCase();
+                return nameB - nameA;
+              }
+              return b.taste - a.taste;
+            }
+            return b.timeToMake - a.timeToMake;
+          }
+          return b.valueForMoney - a.valueForMoney;
+        }
+        return b.foodVariety - a.foodVariety;
+      }
+      return b.customerService - a.customerService;
+    }
+  );
+  
+  return clone;
 }
 
 /**
@@ -88,16 +95,20 @@ function sortedFastFood(fastFoodArray) {
  * will be the same as the original name given.
  */
 function sortedSatisfaction(fastFoodArray) {
-  return [
-    {
-      restaurantName: 'kentucky',
-      satisfaction: 3.6,
-    },
-    {
-      restaurantName: 'maccas',
-      satisfaction: 3.2
+  const clone = [...fastFoodArray];
+  clone.sort(
+    function(a,b) {
+      let satisfactionA = (a.customerService + a.foodVariety + a.valueForMoney + a.timeToMake + a.taste) / 5;
+      let satisfactionB = (b.customerService + b.foodVariety + b.valueForMoney + b.timeToMake + b.taste) / 5;
+      if (satisfactionA === satisfactionB) {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+        return nameB - nameA;
+      }
+      return satisfactionB - satisfactionA;
     }
-  ];
+  );
+  return clone;
 }
 
 // ========================================================================= //
@@ -110,31 +121,49 @@ function sortedSatisfaction(fastFoodArray) {
  */
 const fastFoods = [
   {
-    name: 'Second fastFood, third satisfaction (4.6)',
+    name: 'ABC',
     customerService: 5,
     foodVariety: 5,
     valueForMoney: 5,
-    timeToMake: 4,
-    taste: 4,
+    timeToMake: 5,
+    taste: 5,
   },
   {
     // Same as above, but name starts with "f"
     // which is before "S" (case-insensitive)
-    name: 'First fastFood, second satisfaction (4.6)',
-    customerService: 5,
-    foodVariety: 5,
-    valueForMoney: 5,
-    timeToMake: 4,
-    taste: 4
+    name: 'ACD',
+    customerService: 10,
+    foodVariety: 10,
+    valueForMoney: 10,
+    timeToMake: 10,
+    taste: 10,
   },
   {
     // Worse foodVariety, but better overall
-    name: 'Third fastFood, first satisfaction (4.8)',
-    customerService: 5,
-    foodVariety: 4,
-    valueForMoney: 5,
-    timeToMake: 5,
-    taste: 5
+    name: 'BAH',
+    customerService: 8,
+    foodVariety: 8,
+    valueForMoney: 8,
+    timeToMake: 8,
+    taste: 8,
+  },
+  {
+    // Worse foodVariety, but better overall
+    name: 'BDD',
+    customerService: 3,
+    foodVariety: 3,
+    valueForMoney: 3,
+    timeToMake: 3,
+    taste: 3,
+  },
+  {
+    // Worse foodVariety, but better overall
+    name: 'CCC',
+    customerService: 3,
+    foodVariety: 3,
+    valueForMoney: 3,
+    timeToMake: 3,
+    taste: 3,
   },
 ];
 
